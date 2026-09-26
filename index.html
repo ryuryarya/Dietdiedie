@@ -6,27 +6,27 @@
 <meta name="theme-color" content="#bfe3df">
 <title>DIETDIEDIE</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+/* local-only: no external font dependency */
 
 :root{
-  --sky:#bfe3df; --sky2:#dff0e8; --grass:#b8d891; --grass2:#dcebc8;
-  --cream:#fff9e9; --paper:#fffdf5; --ink:#3e3b3b; --muted:#817a72;
-  --green:#79a66b; --green-dark:#5f8454; --yellow:#f3cf73; --peach:#efaa91;
-  --blue:#8ebed0; --brown:#927256; --line:#d8ccb7; --shadow:#b7a183;
+  --sky:#86c8dc; --sky2:#d9efe2; --grass:#9fcb72; --grass2:#d7e3a7;
+  --cream:#fff4d8; --paper:#fff8e8; --ink:#40352d; --muted:#786a5c;
+  --green:#6f9d55; --green-dark:#4f753e; --yellow:#efc65f; --peach:#e79a78;
+  --blue:#78aec2; --brown:#8a6548; --line:#d0b98f; --shadow:#987957;
 }
 *{box-sizing:border-box}
 html{background:#9fbfba}
 body{
   margin:0;color:var(--ink);
   font-family:system-ui,-apple-system,"Apple SD Gothic Neo",sans-serif;
-  background:linear-gradient(var(--sky) 0 32%,var(--grass2) 32% 100%);
+  background:linear-gradient(#86c8dc 0 31%,#b8d184 31% 100%);
 }
 button,input{font:inherit}
 .app{
   max-width:430px;min-height:100vh;margin:auto;position:relative;overflow:hidden;
   padding-bottom:88px;
   background:
-    linear-gradient(var(--sky2) 0 27%,#d7e9c4 27% 27.5%,var(--grass2) 27.5% 100%);
+    linear-gradient(#d9efe2 0 27%,#b6d47c 27% 27.5%,var(--grass2) 27.5% 100%);
 }
 .app:before{
   content:"";position:absolute;inset:0 0 auto;height:170px;pointer-events:none;
@@ -41,7 +41,7 @@ button,input{font:inherit}
   position:relative;z-index:2;
 }
 .logo{
-  font:13px/1.45 "Press Start 2P",monospace;color:var(--green-dark);
+  font:13px/1.45 "Courier New",monospace;color:var(--green-dark);
   text-shadow:2px 2px #fff8dc;letter-spacing:-1px;
 }
 .small{font-size:11px;color:var(--muted)}
@@ -64,18 +64,18 @@ button,input{font:inherit}
   transform:skewY(-2deg);
 }
 h1{
-  font:14px/1.8 "Press Start 2P",monospace;color:#526e4b;
+  font:14px/1.8 "Courier New",monospace;color:#526e4b;
   text-shadow:2px 2px #fff6dc;margin:8px 0;position:relative;
 }
 h2{
-  font:10px/1.8 "Press Start 2P",monospace;color:#69875b;margin:0 0 12px;
+  font:10px/1.8 "Courier New",monospace;color:#69875b;margin:0 0 12px;
 }
 p{font-size:13px;line-height:1.65}
-.world{font:22px "VT323",monospace;color:#668c5b;letter-spacing:1px;position:relative}
+.world{font:22px "Courier New",monospace;color:#668c5b;letter-spacing:1px;position:relative}
 .badge{
   display:inline-block;padding:5px 8px;border:2px solid #70775e;border-radius:5px;
   background:var(--yellow);color:#5c4d31;box-shadow:2px 3px 0 #b59b72;
-  font:18px "VT323",monospace;
+  font:18px "Courier New",monospace;
 }
 .progress{height:14px;background:#e8dfca;border:2px solid #70775e;border-radius:8px;overflow:hidden;margin:10px 0}
 .progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,#79a66b,#a9c982)}
@@ -83,7 +83,7 @@ p{font-size:13px;line-height:1.65}
 .btn{
   width:100%;padding:12px 10px;border:3px solid #68745e;border-radius:6px;
   background:var(--green);color:#fffced;box-shadow:3px 4px 0 #817159;
-  font:9px/1.7 "Press Start 2P",monospace;font-weight:900;cursor:pointer;
+  font:9px/1.7 "Courier New",monospace;font-weight:900;cursor:pointer;
 }
 .btn:active{transform:translate(2px,3px);box-shadow:1px 1px #817159}
 .btn.secondary{background:#f5e8ca;color:#685947}
@@ -97,11 +97,11 @@ p{font-size:13px;line-height:1.65}
 
 .choice-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
 .choice{
-  padding:11px 7px;text-align:center;border:2px solid #8f987f;border-radius:6px;
-  background:#f8f2df;box-shadow:2px 3px 0 #c9bca4;cursor:pointer;
+  padding:12px 7px;text-align:center;border:3px solid #9b8669;border-radius:10px;
+  background:#fff2d4;box-shadow:3px 4px 0 #c2a47a;cursor:pointer;min-height:68px;
 }
 .choice.selected{background:#dcebc9;border-color:#6d965d;color:#527048}
-.choice strong{display:block;font:9px/1.7 "Press Start 2P",monospace}
+.choice strong{display:block;font:9px/1.7 "Courier New",monospace}
 .choice small{display:block;margin-top:6px;font-size:10px;color:var(--muted)}
 
 .quest{
@@ -112,7 +112,7 @@ p{font-size:13px;line-height:1.65}
 .check{
   flex:0 0 32px;width:32px;height:32px;border:2px solid #77836c;
   border-radius:5px;background:#f4efde;display:grid;place-items:center;
-  cursor:pointer;font:15px "Press Start 2P",monospace;color:white;
+  cursor:pointer;font:15px "Courier New",monospace;color:white;
 }
 .check.done{background:#80ab70}
 .quest b{font-size:13px}
@@ -133,7 +133,7 @@ p{font-size:13px;line-height:1.65}
 }
 .nav button{
   padding:8px 3px;border:2px solid #a3a68e;border-radius:5px;background:#f4ecd8;
-  color:#817d72;font:8px/1.6 "Press Start 2P",monospace;
+  color:#817d72;font:8px/1.6 "Courier New",monospace;
 }
 .nav button.active{background:#dfebcd;color:#648057;box-shadow:inset 0 -2px #a8b695}
 
@@ -155,15 +155,15 @@ p{font-size:13px;line-height:1.65}
 }
 .toast.show{display:block}
 
-/* small pixel-art character */
-.sprite{width:88px;height:108px;margin:0 auto;position:relative;transform:scale(.82);filter:drop-shadow(3px 4px 0 rgba(79,69,55,.25))}
-.sprite .hair{position:absolute;left:23px;top:6px;width:48px;height:25px;background:#765359;border:3px solid #5c4b49}
-.sprite .head{position:absolute;left:27px;top:14px;width:40px;height:39px;background:#ffd4b0;border:3px solid #5c4b49;box-shadow:inset 0 -5px #efb28f}
-.sprite .eye1,.sprite .eye2{position:absolute;top:30px;width:5px;height:5px;background:#4b3b3b}
-.sprite .eye1{left:37px}.sprite .eye2{left:53px}
-.sprite .body{position:absolute;left:19px;top:52px;width:57px;height:40px;background:#9dbd7b;border:3px solid #5c4b49}
-.sprite .leg1,.sprite .leg2{position:absolute;top:89px;width:17px;height:12px;background:#8fb6c5;border:3px solid #5c4b49}
-.sprite .leg1{left:27px}.sprite .leg2{left:53px}
+/* rounded, hand-crafted-feeling pixel character */
+.sprite{width:104px;height:126px;margin:0 auto;position:relative;filter:drop-shadow(3px 5px 0 rgba(66,52,39,.22))}
+.sprite .hair{position:absolute;left:27px;top:7px;width:51px;height:34px;background:#5b4037;border:3px solid #3e302b;border-radius:14px 15px 9px 10px;box-shadow:8px 4px 0 #5b4037}
+.sprite .head{position:absolute;left:31px;top:20px;width:43px;height:42px;background:#f6c39b;border:3px solid #49372f;border-radius:13px 13px 15px 15px;box-shadow:inset 0 -6px #e9a77f}
+.sprite .eye1,.sprite .eye2{position:absolute;top:38px;width:5px;height:7px;background:#3f302b;border-radius:2px}
+.sprite .eye1{left:42px}.sprite .eye2{left:59px}
+.sprite .body{position:absolute;left:20px;top:61px;width:64px;height:43px;background:#e77f68;border:3px solid #49372f;border-radius:15px 15px 9px 9px}
+.sprite .leg1,.sprite .leg2{position:absolute;top:101px;width:19px;height:17px;background:#668fa6;border:3px solid #49372f;border-radius:6px 6px 4px 4px}
+.sprite .leg1{left:30px}.sprite .leg2{left:57px}
 
 /* tiny pixel landscape */
 .land{
@@ -178,6 +178,14 @@ p{font-size:13px;line-height:1.65}
     radial-gradient(circle at 77% 31%,#dcebc7 0 4px,transparent 5px),
     repeating-linear-gradient(90deg,rgba(72,113,62,.09) 0 4px,transparent 4px 12px);
 }
+
+
+.land .sun{position:absolute;right:32px;top:10px;width:22px;height:22px;background:#f6cf68;border:2px solid #b4874c;border-radius:50%;box-shadow:0 0 0 4px rgba(246,207,104,.18)}
+.land .bush{position:absolute;bottom:18px;width:42px;height:19px;background:#6f9850;border:2px solid #52733e;border-radius:18px 18px 8px 8px}
+.land .b1{left:72px}.land .b2{right:76px}
+.land .flower{position:absolute;bottom:24px;color:#fff1b0;font-size:12px;text-shadow:1px 1px #b26d55}
+.land .f1{left:43%}.land .f2{right:30%}
+
 .tree{position:absolute;bottom:8px;width:21px;height:37px;background:#668e58;border:3px solid #58624e;box-shadow:0 -10px 0 #789f64,0 -20px 0 #668e58}
 .tree.a{left:22px}.tree.b{right:26px}
 .path{position:absolute;left:-2%;right:-2%;bottom:-13px;height:38px;background:#d4b17d;transform:skewY(-5deg);border-top:3px solid #9b815f}
@@ -312,11 +320,12 @@ function startGame(){
   S.name=document.getElementById("name").value||"ryurya";
   S.weight=parseFloat(document.getElementById("weight").value)||null;
   S.goalWeight=parseFloat(document.getElementById("goal").value)||null;
-  S.started=true;S.lastDate=todayKey();S.stageNo=1;save();showMorning(true);
+  S.started=true;S.lastDate=todayKey();S.stageNo=1;S.morning={intensity:"normal",condition:"normal"};save();showMorning(true);
 }
 
 function showMorning(first=false){
-  const m=S.morning||{};
+  const m={...(window.tempM||S.morning||{})};
+  window.tempM={...m};
   openModal(`
     <h1>${first?"FIRST STAGE":"TODAY STATUS"}</h1>
     <p>오늘 원하는 강도와 몸 상태를 골라줘.<br>그걸 반영해서 오늘 스테이지를 만들게.</p>
@@ -324,7 +333,7 @@ function showMorning(first=false){
       <label>TODAY'S INTENSITY</label>
       <div class="choice-grid">
         ${Object.entries(intensity).map(([k,v])=>`
-          <div class="choice ${m.intensity===k?"selected":""}" onclick="pick('intensity','${k}')">
+          <div class="choice ${window.tempM?.intensity===k?"selected":""}" onclick="pick('intensity','${k}')">
             <strong>${v.label}</strong><small>${v.desc}</small>
           </div>`).join("")}
       </div>
@@ -333,20 +342,27 @@ function showMorning(first=false){
       <label>TODAY'S CONDITION</label>
       <div class="choice-grid">
         ${Object.entries(condition).map(([k,v])=>`
-          <div class="choice ${m.condition===k?"selected":""}" onclick="pick('condition','${k}')">
+          <div class="choice ${window.tempM?.condition===k?"selected":""}" onclick="pick('condition','${k}')">
             <strong>${v.label}</strong><small>${v.desc}</small>
           </div>`).join("")}
       </div>
     </div>
     <button class="btn" onclick="saveMorning()">BUILD TODAY'S STAGE ▶</button>
   `);
-  window.tempM={...m};
 }
 
 function pick(type,k){
   window.tempM=window.tempM||{};
   window.tempM[type]=k;
-  showMorning(false);
+  document.querySelectorAll('.choice').forEach(el=>el.classList.remove('selected'));
+  const labels={intensity:intensity,condition:condition};
+  const section=type==='intensity'?0:1;
+  const groups=document.querySelectorAll('.field .choice-grid');
+  if(groups[section]){
+    [...groups[section].children].forEach((el,idx)=>{
+      if(Object.keys(labels[type])[idx]===k) el.classList.add('selected');
+    });
+  }
 }
 function saveMorning(){
   if(!window.tempM?.intensity||!window.tempM?.condition){
@@ -366,7 +382,11 @@ function renderHome(){
   </div>
 
   <div class="card hero">
-    <div class="land"><div class="tree a"></div><div class="tree b"></div><div class="path"></div></div>
+    <div class="land">
+  <div class="sun"></div><div class="tree a"></div><div class="tree b"></div>
+  <div class="bush b1"></div><div class="bush b2"></div><div class="flower f1">✦</div><div class="flower f2">✿</div>
+  <div class="path"></div>
+</div>
     <div class="row">
       <div>
         <span class="badge">DAY ${String(S.stageNo).padStart(2,"0")}</span>

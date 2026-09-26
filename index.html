@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f6eddc">
+<title>RYUYA QUEST</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+:root{--bg:#17151f;--panel:#272332;--panel2:#322b40;--ink:#f7edcf;--muted:#b9a9bd;--purple:#9b79c8;--pink:#e38aa5;--green:#8bc77c;--yellow:#f2c86b;--blue:#76a8d8;--red:#d96572;--brown:#14121a;--line:#5a4c69;--shadow:#0b0a0f}
+*{box-sizing:border-box}html{background:#0d0b11}body{margin:0;background:#0d0b11;color:var(--ink);font-family:system-ui,-apple-system,'Apple SD Gothic Neo',sans-serif;image-rendering:pixelated}.app{max-width:430px;min-height:100vh;margin:auto;background:var(--bg);padding-bottom:86px;position:relative;overflow:hidden}.app:before{content:"";position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 4px);z-index:50}.top{padding:18px 14px 8px;display:flex;justify-content:space-between;align-items:center}.logo{font:14px/1.45 'Press Start 2P',monospace;color:var(--yellow);text-shadow:2px 2px #000;letter-spacing:-1px}.small{font-size:11px;color:var(--muted)}.pixel{image-rendering:pixelated}
+.card{margin:10px 12px;background:var(--panel);border:4px solid #111018;box-shadow:5px 5px 0 #08070b;padding:14px;position:relative}.card:after{content:"";position:absolute;inset:4px;border:1px solid #493d56;pointer-events:none}.hero{background:#332b40;min-height:220px;overflow:hidden}.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 62%,rgba(0,0,0,.25) 62%);opacity:.8}.hero h1{font:15px/1.8 'Press Start 2P',monospace;margin:8px 0;color:#fff4d6;text-shadow:2px 2px #000;position:relative}.hero p{font-size:13px;line-height:1.7;color:#cdbfd0;position:relative}.world{font:18px 'VT323',monospace;letter-spacing:1px;color:var(--green);position:relative}.badge{display:inline-block;background:var(--yellow);color:#241a17;border:3px solid #17131a;box-shadow:3px 3px #09080c;padding:5px 7px;font:18px 'VT323',monospace}.progress{height:15px;background:#16131b;border:3px solid #111018;box-shadow:inset 2px 2px #09080c;margin:11px 0}.progress>i{display:block;height:100%;background:var(--green);box-shadow:inset 0 -3px rgba(0,0,0,.18);width:0}.row{display:flex;gap:8px;align-items:center;justify-content:space-between}.btn{width:100%;border:4px solid #111018;background:var(--pink);color:#fff5e8;padding:12px 10px;box-shadow:5px 5px #08070b;cursor:pointer;font-weight:900;font-family:'Press Start 2P',monospace;font-size:10px;line-height:1.5}.btn:active{transform:translate(4px,4px);box-shadow:1px 1px #08070b}.btn.secondary{background:var(--panel2);color:var(--ink)}h2{font:11px/1.7 'Press Start 2P',monospace;margin:0 0 12px;color:var(--yellow)}
+/* intentionally chunky pixel character */.sprite{width:92px;height:108px;margin:4px auto 2px;position:relative;filter:drop-shadow(5px 5px 0 #111018)}.sprite .head{position:absolute;left:25px;top:12px;width:44px;height:44px;background:#ffd5ad;border:5px solid #15121a;box-shadow:inset 0 -6px #e9ae8d}.sprite .hair{position:absolute;left:21px;top:5px;width:52px;height:25px;background:#5a3d59;border:5px solid #15121a}.sprite .eye1,.sprite .eye2{position:absolute;top:29px;width:6px;height:6px;background:#15121a}.sprite .eye1{left:36px}.sprite .eye2{left:54px}.sprite .body{position:absolute;left:17px;top:54px;width:60px;height:42px;background:#9b79c8;border:5px solid #15121a}.sprite .leg1,.sprite .leg2{position:absolute;top:91px;width:18px;height:13px;background:#76a8d8;border:4px solid #15121a}.sprite .leg1{left:23px}.sprite .leg2{left:54px}.sprite.small{transform:scale(.68);transform-origin:center}
+/* pixel terrain */.terrain{height:76px;margin:-10px -14px 10px;background:#4a5f4a;border-top:4px solid #15121a;border-bottom:4px solid #15121a;position:relative;overflow:hidden}.terrain:before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,transparent 0 47%,#3c513e 47% 53%,transparent 53% 100%),repeating-linear-gradient(90deg,rgba(255,255,255,.06) 0 8px,transparent 8px 16px)}.tree{position:absolute;bottom:8px;width:24px;height:42px;background:#315038;border:4px solid #15121a;box-shadow:0 -12px 0 #3f7045,0 -24px 0 #315038}.tree.t1{left:22px}.tree.t2{right:28px}.path{position:absolute;left:0;right:0;bottom:-15px;height:40px;background:#a7835c;transform:skewY(-7deg);border-top:4px solid #15121a}
+.quest{display:flex;gap:10px;align-items:center;padding:13px 0;border-top:2px dashed var(--line)}.quest:first-of-type{border-top:0}.check{flex:0 0 34px;width:34px;height:34px;border:4px solid #111018;background:#18151e;color:#fff;display:grid;place-items:center;cursor:pointer;font:18px 'Press Start 2P'}.check.done{background:var(--green);color:#132014}.quest b{font-size:13px}.quest span{display:block;font-size:11px;color:var(--muted);margin-top:4px;line-height:1.5}.nav{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:min(430px,100%);background:#201c29;border-top:4px solid #111018;display:grid;grid-template-columns:repeat(3,1fr);padding:7px 8px;z-index:20;box-shadow:0 -5px #0b0a0f}.nav button{background:#2b2534;border:3px solid #111018;color:#a99ab0;font:9px/1.6 'Press Start 2P';padding:7px 3px}.nav button.active{color:var(--yellow);background:#3a3044;box-shadow:inset 0 -3px #111018}.choice-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.choice{border:4px solid #111018;background:#322b40;padding:12px 7px;text-align:center;cursor:pointer;box-shadow:3px 3px #0b0a0f}.choice.selected{background:#514163;border-color:var(--yellow);color:#fff4c8}.choice strong{display:block;font:10px/1.6 'Press Start 2P';}.choice small{display:block;margin-top:7px;color:var(--muted);font-size:10px}.overlay{position:fixed;inset:0;background:rgba(8,7,11,.82);display:none;align-items:flex-end;justify-content:center;z-index:60}.modal{width:min(430px,100%);background:var(--panel);border:4px solid #111018;padding:18px;max-height:88vh;overflow:auto;box-shadow:8px 0 #0b0a0f,-8px 0 #0b0a0f}.overlay.show{display:flex}.modal h1{font:13px/1.8 'Press Start 2P';color:var(--yellow)}.field{margin:13px 0}.field label{display:block;font-weight:900;font-size:12px;margin-bottom:7px}.field input{width:100%;padding:11px;border:4px solid #111018;background:#f6edda;color:#251d28;font-weight:800;outline:0}.toast{position:fixed;left:50%;bottom:94px;transform:translateX(-50%);background:#f2c86b;color:#201820;padding:9px 12px;border:4px solid #111018;display:none;z-index:70;font-weight:900;box-shadow:4px 4px #08070b;font-size:12px}.toast.show{display:block}.stat{display:grid;grid-template-columns:1fr 1fr;gap:9px}.statbox{border:3px solid #111018;padding:11px;background:#322b40;box-shadow:3px 3px #0b0a0f}.statbox strong{font:28px 'VT323';display:block;color:var(--green)}.lock{opacity:.35}.map{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;align-items:center}.node{height:34px;background:#40364b;border:3px solid #111018;display:grid;place-items:center;font:14px 'VT323';box-shadow:2px 2px #0b0a0f}.node.done{background:#6f9a65}.node.now{background:var(--yellow);color:#241a17;transform:translateY(-3px)}.node.lock{background:#211d28}.mapline{height:4px;background:#111018}.pixel-title{font:17px 'VT323';letter-spacing:2px;color:var(--green)}
+@media(max-width:360px){.hero h1{font-size:13px}.card{margin-left:9px;margin-right:9px}}
+</style>
+</head>
+<body>
+<div class="app" id="app"></div>
+<div class="overlay" id="overlay"><div class="modal" id="modal"></div></div>
+<div class="toast" id="toast"></div>
+<script>
+const KEY="ryuyaQuestV1";
+const todayKey=()=>new Date().toISOString().slice(0,10);
+const defaultState={
+  started:false, name:"류랴", level:1, xp:0, streak:0, bestStreak:0,
+  stageNo:1, lastDate:null, morning:null, quests:[], cleared:false,
+  history:[], weight:null, goalWeight:null
+};
+let S=load();
+function load(){try{return {...defaultState,...JSON.parse(localStorage.getItem(KEY))}}catch(e){return {...defaultState}}}
+function save(){localStorage.setItem(KEY,JSON.stringify(S))}
+function toast(t){const x=document.getElementById("toast");x.textContent=t;x.classList.add("show");setTimeout(()=>x.classList.remove("show"),1800)}
+function xpNeed(){return 200 + (S.level-1)*60}
+function addXP(n){S.xp+=n; while(S.xp>=xpNeed()){S.xp-=xpNeed();S.level++;toast("LEVEL UP! Lv."+S.level)}}
+function openModal(html){document.getElementById("modal").innerHTML=html;document.getElementById("overlay").classList.add("show")}
+function closeModal(){document.getElementById("overlay").classList.remove("show")}
+document.getElementById("overlay").addEventListener("click",e=>{if(e.target.id==="overlay")closeModal()});
+
+const intensity={
+ light:{label:" 가볍게",mult:.75},
+ normal:{label:"🌱 적당히",mult:1},
+ hard:{label:"🔥 제대로",mult:1.2},
+ veryhard:{label:"💀 빡세게",mult:1.35}
+};
+const condition={
+ great:{label:"😄 최고"},
+ normal:{label:"🙂 보통"},
+ tired:{label:"😴 피곤"},
+ sore:{label:"🫠 뻐근"}
+};
+function makeStage(){
+  const m=S.morning||{intensity:"normal",condition:"normal"};
+  let mult=intensity[m.intensity].mult;
+  if(m.condition==="tired") mult*=.85;
+  if(m.condition==="sore") mult*=.78;
+  if(S.history.length){
+    const last=S.history[S.history.length-1];
+    if(last.effort==="too_hard") mult*=.88;
+    if(last.effort==="too_easy") mult*=1.08;
+  }
+  mult=Math.max(.65,Math.min(1.35,mult));
+  const workoutMin=Math.round((16*mult)/2)*2;
+  const water=mult<.8?1.3:mult>1.15?1.8:1.5;
+  let workout;
+  if(m.condition==="sore") workout={title:`🧘 ${workoutMin}분 회복 루틴`,items:["캣카우 8회","글루트 브릿지 12회 × 2","버드독 8회 × 2","전신 스트레칭 5분"]};
+  else if((S.stageNo%3)===1) workout={title:`🏠 ${workoutMin}분 전신 루틴`,items:["스쿼트 12회 × 3","글루트 브릿지 15회 × 3","벽 푸시업 10회 × 2","데드버그 8회 × 2","가벼운 스트레칭 3분"]};
+  else if((S.stageNo%3)===2) workout={title:`🍑 ${workoutMin}분 하체·코어`,items:["스쿼트 12회 × 3","사이드 레그레이즈 12회 × 2","글루트 브릿지 15회 × 3","데드버그 8회 × 2","힙 스트레칭 3분"]};
+  else workout={title:`💪 ${workoutMin}분 상체·코어`,items:["벽/무릎 푸시업 10회 × 3","버드독 8회 × 2","데드버그 8회 × 2","플랭크 15~25초 × 3","어깨 스트레칭 3분"]};
+  const steps=workoutMin>=18?7000:5500;
+  return [
+    {id:"move",title:workout.title,detail:workout.items.join(" · "),xp:45},
+    {id:"food",title:"🥗 단백질 챙기기",detail:"오늘 2끼에 단백질 식품 포함하기",xp:30},
+    {id:"water",title:`💧 물 ${water}L 마시기`,detail:"한 번에 몰아 마시지 말고 나눠 마시기",xp:25},
+    {id:"walk",title:`🚶 ${steps.toLocaleString()}보 걷기`,detail:"평소 활동량을 조금만 늘리기",xp:30}
+  ];
+}
+function ensureToday(){
+  const d=todayKey();
+  if(!S.lastDate){
+    S.lastDate=d; S.quests=makeStage(); S.cleared=false; save();
+  } else if(S.lastDate!==d){
+    S.stageNo++;
+    S.lastDate=d; S.morning=null; S.quests=[]; S.cleared=false; save();
+  }
+}
+function render(){
+  if(!S.started){renderStart();return}
+  ensureToday();
+  renderHome();
+}
+function renderStart(){
+document.getElementById("app").innerHTML=`
+<div class="top"><div class="logo">RYUYA<br>QUEST</div><div class="badge">NEW GAME</div></div>
+<div class="card hero">
+ <div style="font-family:'VT323';font-size:22px;text-align:center;color:#5d7e50">★ RYUYA'S LITTLE WORLD ★</div>
+ <div class="sprite"><div class="hair"></div><div class="head"></div><div class="eye1"></div><div class="eye2"></div><div class="body"></div><div class="leg1"></div><div class="leg2"></div></div><div style="display:none"></div></div>
+ <h1>나만의 다이어트<br>모험을 시작해!</h1>
+ <p>하루에 단 하나의 스테이지.<br>오늘 할 일은 내가 정해줄게.</p>
+</div>
+<div class="card">
+ <h2>FIRST SETUP</h2>
+ <div class="field"><label>이름</label><input id="name" value="류랴"></div>
+ <div class="field"><label>현재 체중 (선택)</label><input id="weight" type="number" step="0.1" placeholder="예: 50"></div>
+ <div class="field"><label>목표 체중 (선택)</label><input id="goal" type="number" step="0.1" placeholder="예: 48"></div>
+ <button class="btn" onclick="startGame()">START QUEST ▶</button>
+</div>`;
+}
+function startGame(){
+ S.name=document.getElementById("name").value||"류랴";
+ S.weight=parseFloat(document.getElementById("weight").value)||null;
+ S.goalWeight=parseFloat(document.getElementById("goal").value)||null;
+ S.started=true;S.lastDate=todayKey();S.stageNo=1;save();showMorning(true);
+}
+function showMorning(first=false){
+ const m=S.morning||{};
+ openModal(`<h1>${first?"FIRST STAGE":"TODAY STATUS"}</h1>
+ <p>오늘 원하는 운동 강도와 몸 상태를 알려줘. 그걸 반영해서 오늘 스테이지를 만들게.</p>
+ <div class="field"><label>TODAY'S INTENSITY</label><div class="choice-grid">${Object.entries(intensity).map(([k,v])=>`<div class="choice ${m.intensity===k?"selected":""}" onclick="pick('mi','${k}')"><strong>${v.label}</strong><small>${k==="light"?"부담 없이":k==="normal"?"적당하게":k==="hard"?"운동 제대로":"오늘은 도전"}</small></div>`).join("")}</div></div>
+ <div class="field"><label>TODAY'S CONDITION</label><div class="choice-grid">${Object.entries(condition).map(([k,v])=>`<div class="choice ${m.condition===k?"selected":""}" onclick="pick('mc','${k}')"><strong>${v.label}</strong></div>`).join("")}</div></div>
+ <button class="btn" onclick="saveMorning()">BUILD TODAY'S STAGE ▶</button>`);
+ window.tempM={...m};
+}
+function pick(type,k){window.tempM=window.tempM||{};window.tempM[type==="mi"?"intensity":"condition"]=k;showMorning(false)}
+function saveMorning(){
+ if(!window.tempM?.intensity||!window.tempM?.condition){toast("강도와 컨디션을 골라줘!");return}
+ S.morning=window.tempM;S.quests=makeStage();S.cleared=false;save();closeModal();renderHome();
+}
+function renderHome(){
+ const done=S.quests.filter(q=>q.done).length, total=S.quests.length;
+ const pct=total?Math.round(done/total*100):0;
+ document.getElementById("app").innerHTML=`
+ <div class="top"><div class="logo">RYUYA QUEST</div><div class="small">STREAK ${S.streak}</div></div>
+ <div class="card hero">
+  <div style="font-family:'VT323';font-size:21px;color:#5d7e50;margin-bottom:8px">WORLD 01 · HABIT FOREST</div>
+  <div class="row"><div><span class="badge">DAY ${String(S.stageNo).padStart(2,"0")}</span><h1 style="margin-top:10px">TODAY'S STAGE</h1></div><div class="avatar" style="font-size:52px"></div></div>
+  <p>${S.cleared?"🎉 TODAY'S STAGE CLEAR!":"CLEAR 3 QUESTS TO FINISH"}</p>
+  <div class="progress"><i style="width:${pct}%"></i></div>
+  <div class="small">${done}/${total} QUESTS · ${S.level} LV · ${S.xp}/${xpNeed()} XP</div>
+ </div>
+ <div class="card" style="background:#efe3c8">
+  <h2>STAGE MAP</h2>
+  <div style="display:flex;align-items:center;gap:5px;overflow:hidden">
+    <span class="badge">01 ✓</span><span>—</span><span class="badge" style="background:#f7d89b">02 ★</span><span>—</span><span class="badge lock">03 🔒</span><span>—</span><span class="badge lock">04 🔒</span>
+  </div>
+ </div>
+ <div class="card">
+  <h2>TODAY'S QUEST</h2>
+  ${S.quests.map((q,i)=>`<div class="quest"><button class="check ${q.done?"done":""}" onclick="toggleQuest(${i})">${q.done?"✓":""}</button><div style="flex:1"><b>${q.title}</b><span>${q.detail}</span></div><b style="color:var(--green)">+${q.xp}</b></div>`).join("")}
+  <div style="margin-top:14px"><button class="btn ${done>=3?"":"secondary"}" onclick="finishStage()">${done>=3?"STAGE CLEAR":"CLEAR MORE QUESTS"}</button></div>
+ </div>
+ <div class="card">
+  <h2>PLAYER LOG</h2>
+  <div class="stat"><div class="statbox"><span class="small">현재 레벨</span><strong>Lv.${S.level}</strong></div><div class="statbox"><span class="small">최고 스트릭</span><strong>${S.bestStreak}일</strong></div></div>
+  <button class="btn secondary" style="margin-top:10px" onclick="showMorning(false)">오늘 강도 다시 설정</button>
+ </div>
+ <div class="nav"><button class="active">HOME</button><button onclick="showStats()">LOG</button><button onclick="showAbout()"><br>내 캐릭터</button></div>`;
+}
+function toggleQuest(i){
+ if(S.quests[i].done)return;
+ S.quests[i].done=true;addXP(S.quests[i].xp);save();renderHome();toast("QUEST CLEAR!");
+}
+function finishStage(){
+ if(S.quests.filter(q=>q.done).length<3){toast("3개 이상 완료해야 CLEAR야!");return}
+ if(!S.cleared){
+   S.cleared=true; S.streak++; S.bestStreak=Math.max(S.bestStreak,S.streak);
+   S.history.push({date:S.lastDate,effort:null,cleared:true});
+   addXP(50);save();
+ }
+ showNight();
+}
+function showNight(){
+ openModal(`<h1>DAY ${String(S.stageNo).padStart(2,"0")} COMPLETE!</h1>
+ <p>오늘 스테이지는 어땠어? 이 답변으로 다음 스테이지 난이도를 조절할게.</p>
+ <div class="choice-grid" style="margin:14px 0">
+ <div class="choice" onclick="nightPick('too_easy')"><strong>😴 너무 쉬웠어</strong><small>더 해도 됐어</small></div>
+ <div class="choice" onclick="nightPick('just_right')"><strong>🙂 딱 좋았어</strong><small>이 정도가 좋아</small></div>
+ <div class="choice" onclick="nightPick('a_bit_hard')"><strong>😮‍💨 조금 힘들었어</strong><small>조금만 낮춰줘</small></div>
+ <div class="choice" onclick="nightPick('too_hard')"><strong>🫠 너무 힘들었어</strong><small>내일은 쉬어가자</small></div>
+ </div>
+ <button class="btn secondary" onclick="closeModal()">나중에 답하기</button>`);
+}
+function nightPick(e){
+ const h=S.history[S.history.length-1]; if(h)h.effort=e;save();closeModal();toast("💾 다음 스테이지에 반영할게!");renderHome();
+}
+function showStats(){
+ const cleared=S.history.filter(x=>x.cleared).length;
+ document.getElementById("app").innerHTML=`<div class="top"><div class="logo">RYUYA QUEST</div></div>
+ <div class="card"><h2>MY JOURNEY</h2><div class="stat">
+ <div class="statbox"><span class="small">CLEAR</span><strong>${cleared}일</strong></div>
+ <div class="statbox"><span class="small">STREAK</span><strong>${S.streak}일</strong></div>
+ <div class="statbox"><span class="small">LEVEL</span><strong>${S.level}</strong></div>
+ <div class="statbox"><span class="small">현재 XP</span><strong>${S.xp}</strong></div></div></div>
+ <div class="card"><h2>BODY</h2><p>현재 체중: <b>${S.weight?S.weight+" kg":"아직 기록 없음"}</b></p><p>목표 체중: <b>${S.goalWeight?S.goalWeight+" kg":"아직 설정 없음"}</b></p><button class="btn secondary" onclick="editWeight()">체중 기록</button></div>
+ <div class="nav"><button onclick="renderHome()">HOME</button><button class="active">LOG</button><button onclick="showAbout()"><br>내 캐릭터</button></div>`;
+}
+function editWeight(){
+ openModal(`<h1>TODAY'S WEIGHT</h1><div class="field"><label>현재 체중</label><input id="w" type="number" step="0.1" value="${S.weight||""}"></div><button class="btn" onclick="S.weight=parseFloat(document.getElementById('w').value)||S.weight;save();closeModal();showStats()">저장</button>`);
+}
+function showAbout(){
+ document.getElementById("app").innerHTML=`<div class="top"><div class="logo">RYUYA QUEST</div></div>
+ <div class="card hero"><div class="sprite"><div class="hair"></div><div class="head"></div><div class="eye1"></div><div class="eye2"></div><div class="body"></div><div class="leg1"></div><div class="leg2"></div></div><div style="display:none"></div><h1>Lv.${S.level} ${S.name}</h1><p>작은 습관을 깨면서 캐릭터도 같이 자라는 중.</p><div class="progress"><i style="width:${Math.round(S.xp/xpNeed()*100)}%"></i></div><div class="small">${S.xp}/${xpNeed()} XP TO NEXT LEVEL</div></div>
+ <div class="card"><h2>INVENTORY</h2><p>🌱 아직 잠금 해제된 아이템이 없어.</p><p class="small">나중에 방 꾸미기와 아이템을 넣을 수 있어.</p></div>
+ <div class="nav"><button onclick="renderHome()">HOME</button><button onclick="showStats()">LOG</button><button class="active"><br>내 캐릭터</button></div>`;
+}
+render();
+</script>
+</body>
+</html>

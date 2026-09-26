@@ -3,534 +3,221 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#bfe3df">
-<title>DIETDIEDIE</title>
+<meta name="theme-color" content="#253b46">
+<title>DIETDIEDIE — RYURYA WORLD</title>
 <style>
-/* local-only: no external font dependency */
-
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Gowun+Dodum&display=swap');
 :root{
-  --sky:#86c8dc; --sky2:#d9efe2; --grass:#9fcb72; --grass2:#d7e3a7;
-  --cream:#fff4d8; --paper:#fff8e8; --ink:#40352d; --muted:#786a5c;
-  --green:#6f9d55; --green-dark:#4f753e; --yellow:#efc65f; --peach:#e79a78;
-  --blue:#78aec2; --brown:#8a6548; --line:#d0b98f; --shadow:#987957;
+ --ink:#172329;--cream:#fff4cf;--paper:#f7e7bd;--paper2:#ead09b;--brown:#62462f;
+ --green:#69a65b;--green2:#3f764c;--sky:#5da7c9;--blue:#477fa1;--gold:#e6b94d;--red:#d96858;
+ --shadow:#2c3030;--accent:#6aa85b;--accent2:#d9ee8b;
 }
-*{box-sizing:border-box}
-html{background:#9fbfba}
-body{
-  margin:0;color:var(--ink);
-  font-family:system-ui,-apple-system,"Apple SD Gothic Neo",sans-serif;
-  background:linear-gradient(#86c8dc 0 31%,#b8d184 31% 100%);
-}
-button,input{font:inherit}
-.app{
-  max-width:430px;min-height:100vh;margin:auto;position:relative;overflow:hidden;
-  padding-bottom:88px;
-  background:
-    linear-gradient(#d9efe2 0 27%,#b6d47c 27% 27.5%,var(--grass2) 27.5% 100%);
-}
-.app:before{
-  content:"";position:absolute;inset:0 0 auto;height:170px;pointer-events:none;
-  background:
-    radial-gradient(ellipse 48px 20px at 18% 24%,rgba(255,255,255,.68) 0 55%,transparent 56%),
-    radial-gradient(ellipse 38px 16px at 79% 14%,rgba(255,255,255,.55) 0 55%,transparent 56%),
-    radial-gradient(circle at 9% 68%,rgba(255,255,255,.25) 0 2px,transparent 3px),
-    radial-gradient(circle at 91% 47%,rgba(255,255,255,.3) 0 2px,transparent 3px);
-}
-.top{
-  padding:17px 16px 8px;display:flex;justify-content:space-between;align-items:center;
-  position:relative;z-index:2;
-}
-.logo{
-  font:13px/1.45 "Courier New",monospace;color:var(--green-dark);
-  text-shadow:2px 2px #fff8dc;letter-spacing:-1px;
-}
-.small{font-size:11px;color:var(--muted)}
-.card{
-  margin:11px 13px;background:var(--paper);border:3px solid #717c62;border-radius:8px;
-  box-shadow:4px 5px 0 var(--shadow);padding:15px;position:relative;
-}
-.card:after{
-  content:"";position:absolute;inset:4px;border:1px solid rgba(135,112,81,.18);
-  border-radius:5px;pointer-events:none;
-}
-.hero{
-  min-height:255px;overflow:hidden;
-  background:linear-gradient(#d7eee9 0 50%,#a9cf88 50% 100%);
-}
-.hero:before{
-  content:"";position:absolute;left:-10%;right:-10%;bottom:-1px;height:90px;
-  background:
-    repeating-linear-gradient(90deg,rgba(67,111,57,.10) 0 4px,transparent 4px 12px);
-  transform:skewY(-2deg);
-}
-h1{
-  font:14px/1.8 "Courier New",monospace;color:#526e4b;
-  text-shadow:2px 2px #fff6dc;margin:8px 0;position:relative;
-}
-h2{
-  font:10px/1.8 "Courier New",monospace;color:#69875b;margin:0 0 12px;
-}
-p{font-size:13px;line-height:1.65}
-.world{font:22px "Courier New",monospace;color:#668c5b;letter-spacing:1px;position:relative}
-.badge{
-  display:inline-block;padding:5px 8px;border:2px solid #70775e;border-radius:5px;
-  background:var(--yellow);color:#5c4d31;box-shadow:2px 3px 0 #b59b72;
-  font:18px "Courier New",monospace;
-}
-.progress{height:14px;background:#e8dfca;border:2px solid #70775e;border-radius:8px;overflow:hidden;margin:10px 0}
-.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,#79a66b,#a9c982)}
-.row{display:flex;gap:8px;align-items:center;justify-content:space-between}
-.btn{
-  width:100%;padding:12px 10px;border:3px solid #68745e;border-radius:6px;
-  background:var(--green);color:#fffced;box-shadow:3px 4px 0 #817159;
-  font:9px/1.7 "Courier New",monospace;font-weight:900;cursor:pointer;
-}
-.btn:active{transform:translate(2px,3px);box-shadow:1px 1px #817159}
-.btn.secondary{background:#f5e8ca;color:#685947}
-
-.field{margin:13px 0}
-.field label{display:block;font-size:12px;font-weight:900;margin-bottom:7px;color:#625b52}
-.field input{
-  width:100%;padding:11px;border:2px solid #a0a18d;border-radius:5px;
-  background:#fffef8;color:#403b36;outline:0;font-weight:800;
-}
-
-.choice-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
-.choice{
-  padding:12px 7px;text-align:center;border:3px solid #9b8669;border-radius:10px;
-  background:#fff2d4;box-shadow:3px 4px 0 #c2a47a;cursor:pointer;min-height:68px;
-}
-.choice.selected{background:#dcebc9;border-color:#6d965d;color:#527048}
-.choice strong{display:block;font:9px/1.7 "Courier New",monospace}
-.choice small{display:block;margin-top:6px;font-size:10px;color:var(--muted)}
-
-.quest{
-  display:flex;align-items:center;gap:10px;padding:13px 0;
-  border-top:2px dashed var(--line);
-}
-.quest:first-of-type{border-top:0}
-.check{
-  flex:0 0 32px;width:32px;height:32px;border:2px solid #77836c;
-  border-radius:5px;background:#f4efde;display:grid;place-items:center;
-  cursor:pointer;font:15px "Courier New",monospace;color:white;
-}
-.check.done{background:#80ab70}
-.quest b{font-size:13px}
-.quest span{display:block;margin-top:4px;font-size:11px;line-height:1.5;color:var(--muted)}
-
-.stat{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.statbox{
-  padding:11px;background:#f5f0de;border:2px solid #969a82;border-radius:6px;
-  box-shadow:2px 3px 0 #c9bca4;
-}
-.statbox strong{display:block;font:27px "VT323";color:#71965e}
-
-.nav{
-  position:fixed;left:50%;bottom:0;transform:translateX(-50%);
-  width:min(430px,100%);padding:7px 8px;display:grid;grid-template-columns:repeat(3,1fr);
-  gap:5px;background:#fff9ea;border-top:3px solid #788069;
-  box-shadow:0 -4px rgba(113,98,76,.15);z-index:20;
-}
-.nav button{
-  padding:8px 3px;border:2px solid #a3a68e;border-radius:5px;background:#f4ecd8;
-  color:#817d72;font:8px/1.6 "Courier New",monospace;
-}
-.nav button.active{background:#dfebcd;color:#648057;box-shadow:inset 0 -2px #a8b695}
-
-.modal-back{
-  position:fixed;inset:0;background:rgba(65,77,61,.40);display:none;
-  align-items:flex-end;justify-content:center;z-index:60;
-}
-.modal-back.show{display:flex}
-.modal{
-  width:min(430px,100%);max-height:88vh;overflow:auto;background:#fffaf0;
-  border:3px solid #68735b;border-radius:10px;padding:18px;
-  box-shadow:6px 0 #9f8d70,-6px 0 #9f8d70;
-}
-.modal h1{font-size:12px}
-.toast{
-  position:fixed;left:50%;bottom:96px;transform:translateX(-50%);
-  z-index:70;display:none;padding:9px 12px;border:2px solid #786a4e;border-radius:5px;
-  background:#f5d77d;color:#584927;font-size:12px;font-weight:900;box-shadow:3px 3px #a38f6b;
-}
-.toast.show{display:block}
-
-/* rounded, hand-crafted-feeling pixel character */
-.sprite{width:104px;height:126px;margin:0 auto;position:relative;filter:drop-shadow(3px 5px 0 rgba(66,52,39,.22))}
-.sprite .hair{position:absolute;left:27px;top:7px;width:51px;height:34px;background:#5b4037;border:3px solid #3e302b;border-radius:14px 15px 9px 10px;box-shadow:8px 4px 0 #5b4037}
-.sprite .head{position:absolute;left:31px;top:20px;width:43px;height:42px;background:#f6c39b;border:3px solid #49372f;border-radius:13px 13px 15px 15px;box-shadow:inset 0 -6px #e9a77f}
-.sprite .eye1,.sprite .eye2{position:absolute;top:38px;width:5px;height:7px;background:#3f302b;border-radius:2px}
-.sprite .eye1{left:42px}.sprite .eye2{left:59px}
-.sprite .body{position:absolute;left:20px;top:61px;width:64px;height:43px;background:#e77f68;border:3px solid #49372f;border-radius:15px 15px 9px 9px}
-.sprite .leg1,.sprite .leg2{position:absolute;top:101px;width:19px;height:17px;background:#668fa6;border:3px solid #49372f;border-radius:6px 6px 4px 4px}
-.sprite .leg1{left:30px}.sprite .leg2{left:57px}
-
-/* tiny pixel landscape */
-.land{
-  height:76px;margin:-11px -15px 11px;background:#a9cf89;
-  border-top:3px solid #717c62;border-bottom:3px solid #717c62;position:relative;overflow:hidden;
-}
-.land:before{
-  content:"";position:absolute;inset:0;
-  background:
-    radial-gradient(circle at 20% 22%,#dcebc7 0 5px,transparent 6px),
-    radial-gradient(circle at 48% 60%,#739b60 0 3px,transparent 4px),
-    radial-gradient(circle at 77% 31%,#dcebc7 0 4px,transparent 5px),
-    repeating-linear-gradient(90deg,rgba(72,113,62,.09) 0 4px,transparent 4px 12px);
-}
-
-
-.land .sun{position:absolute;right:32px;top:10px;width:22px;height:22px;background:#f6cf68;border:2px solid #b4874c;border-radius:50%;box-shadow:0 0 0 4px rgba(246,207,104,.18)}
-.land .bush{position:absolute;bottom:18px;width:42px;height:19px;background:#6f9850;border:2px solid #52733e;border-radius:18px 18px 8px 8px}
-.land .b1{left:72px}.land .b2{right:76px}
-.land .flower{position:absolute;bottom:24px;color:#fff1b0;font-size:12px;text-shadow:1px 1px #b26d55}
-.land .f1{left:43%}.land .f2{right:30%}
-
-.tree{position:absolute;bottom:8px;width:21px;height:37px;background:#668e58;border:3px solid #58624e;box-shadow:0 -10px 0 #789f64,0 -20px 0 #668e58}
-.tree.a{left:22px}.tree.b{right:26px}
-.path{position:absolute;left:-2%;right:-2%;bottom:-13px;height:38px;background:#d4b17d;transform:skewY(-5deg);border-top:3px solid #9b815f}
-
-@media(max-width:360px){.card{margin-left:10px;margin-right:10px}.hero h1{font-size:12px}}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#172329;color:var(--ink)}body{font-family:'Gowun Dodum',system-ui,sans-serif}
+button,input{font:inherit}button{cursor:pointer}
+#game{min-height:100vh;background:linear-gradient(#263c47,#172329);display:flex;justify-content:center}
+.shell{width:min(100%,480px);min-height:100vh;position:relative;overflow:hidden;background:#6ca8bd;box-shadow:0 0 0 4px #0f191d,0 0 40px #0008}
+/* WORLD */
+.world{position:absolute;inset:0 0 74px;background:#5da4bf}
+#worldCanvas{width:100%;height:100%;display:block;image-rendering:pixelated;image-rendering:crisp-edges}
+.worldShade{position:absolute;inset:0;background:linear-gradient(180deg,#17323a08 0 55%,#10201822 100%);pointer-events:none}
+/* TOP HUD */
+.hud{position:absolute;left:8px;right:8px;top:8px;display:flex;align-items:flex-start;justify-content:space-between;gap:6px;z-index:10;pointer-events:none}
+.hudBox{background:#f5e4b7;border:3px solid #2b3435;box-shadow:3px 3px 0 #10191c, inset 0 0 0 2px #a88a57;padding:5px 7px;pointer-events:auto}
+.logo{font:11px/1.4 'Press Start 2P',monospace;color:#24353a;text-shadow:1px 1px #fff3c7;letter-spacing:-.6px}
+.date{font-size:10px;font-weight:bold}.coin{font:11px 'Press Start 2P';color:#77511e}.coin b{color:#2f4e39}
+.playerHud{min-width:130px}.hpLine{height:8px;background:#3e3b38;border:2px solid #25292a;margin-top:4px}.hpLine i{display:block;width:100%;height:100%;background:#d9584d}.xpLine{height:5px;background:#3e3b38;margin-top:3px}.xpLine i{display:block;width:42%;height:100%;background:#e3b846}
+/* floating speech */
+.speech{position:absolute;z-index:9;left:50%;top:27%;transform:translateX(-50%);background:#fff5dc;border:3px solid #263337;padding:8px 11px;min-width:170px;text-align:center;box-shadow:3px 3px 0 #182327;font-size:12px;font-weight:bold;display:none}.speech:after{content:'';position:absolute;left:50%;bottom:-13px;border:6px solid transparent;border-top-color:#263337}.speech.show{display:block}
+/* WINDOW SYSTEM */
+.windows{position:absolute;inset:0 0 74px;z-index:30;pointer-events:none}
+.window{position:absolute;left:8px;right:8px;top:62px;bottom:10px;background:#f5e7c4;border:4px solid #293537;box-shadow:6px 6px 0 #111b1e, inset 0 0 0 2px #a88c5a;display:none;pointer-events:auto;overflow:hidden}
+.window.open{display:block;animation:pop .12s ease-out}.window.compact{left:24px;right:24px;top:100px;bottom:105px}
+@keyframes pop{from{transform:scale(.97);opacity:.5}to{transform:none;opacity:1}}
+.titlebar{height:40px;background:var(--accent);border-bottom:4px solid #293537;display:flex;align-items:center;justify-content:space-between;padding:0 7px;color:#fff8dc;text-shadow:2px 2px #31523b;font:10px 'Press Start 2P';position:relative}
+.titlebar .dots{display:flex;gap:4px}.titlebar .dots i{width:9px;height:9px;border:2px solid #263436;background:#f2c859}.titlebar .dots i:nth-child(2){background:#e78669}.titlebar .dots i:nth-child(3){background:#83b5cf}
+.close{width:25px;height:25px;border:3px solid #293537;background:#e8c56e;box-shadow:2px 2px 0 #293537;color:#293537;font-weight:900;line-height:16px}.close:active{transform:translate(1px,1px);box-shadow:1px 1px 0 #293537}
+.winbody{height:calc(100% - 40px);overflow:auto;padding:10px;background:repeating-linear-gradient(0deg,#f5e7c4 0 19px,#f1dfb6 19px 20px)}
+.section{border:3px solid #705238;background:#fff4d5;box-shadow:3px 3px 0 #a88b5b;margin-bottom:9px;padding:9px}.section h3{font:9px 'Press Start 2P';margin:0 0 9px;color:#45634b}.tiny{font-size:10px;color:#6b604d}.big{font-size:17px;font-weight:bold}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:7px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+/* quest */
+.questRow{display:grid;grid-template-columns:35px 1fr 50px;gap:8px;align-items:center;border-top:2px dotted #b69a68;padding:9px 0}.questRow:first-child{border-top:0}.qicon{width:34px;height:34px;background:#c9df9b;border:3px solid #45634b;display:grid;place-items:center;font-size:18px}.questRow.done{opacity:.58}.questRow.done .qicon{background:#70a667;color:white}.questRow b{font-size:12px}.questRow span{display:block;font-size:10px;color:#766850;margin-top:2px}.xp{font:8px 'Press Start 2P';color:#8a6321;text-align:right}.wideBtn{width:100%;border:3px solid #293537;background:var(--accent);color:#fff5d6;padding:10px;box-shadow:3px 3px #293537;font:9px 'Press Start 2P';text-shadow:1px 1px #35513a}.wideBtn:active{transform:translate(2px,2px);box-shadow:1px 1px #293537}.wideBtn.alt{background:#e8c56e;color:#463a2b}.wideBtn.red{background:#d96858}
+/* choices */
+.choice{border:3px solid #705238;background:#fff1c9;padding:8px 6px;text-align:center;box-shadow:2px 2px #a88b5b}.choice.sel{background:#cde29e;border-color:#3f754b;box-shadow:inset 0 0 0 2px #83a96c,2px 2px #7e6a49}.choice b{display:block;font-size:11px}.choice small{font-size:9px;color:#786b55}.choice:active{transform:translate(1px,1px)}
+/* inventory */
+.item{border:3px solid #705238;background:#fff1c9;min-height:80px;padding:7px;position:relative}.item .art{height:38px;font-size:29px;display:grid;place-items:center}.item b{font-size:10px}.item small{display:block;color:#77694f;font-size:9px}.locked{filter:grayscale(1);opacity:.55}.tag{position:absolute;top:4px;right:4px;background:#3e764d;color:#fff4d0;padding:2px 4px;font-size:8px}
+/* log */
+.bar{height:13px;background:#4b4a42;border:2px solid #282f2e}.bar i{display:block;height:100%;background:var(--accent)}.miniStat{padding:7px;background:#f9edc9;border:2px solid #9a7c50}.miniStat b{display:block;font:16px 'Press Start 2P';color:#4c6d4e;margin-top:4px}.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}.day{height:30px;background:#ead5a7;border:2px solid #987c53;display:grid;place-items:center;font-size:9px}.day.clear{background:#91bd73;color:#fff;border-color:#47684b}.day.today{outline:3px solid #dfad45;outline-offset:1px}
+/* dialogue / onboarding */
+.backdrop{position:absolute;inset:0 0 74px;background:#102027aa;z-index:80;display:none;align-items:center;justify-content:center;padding:12px}.backdrop.show{display:flex}.modal{width:100%;max-height:90%;background:#f5e7c4;border:4px solid #293537;box-shadow:7px 7px #10191d,inset 0 0 0 2px #a88c5a;overflow:auto}.modal .winbody{height:auto;max-height:calc(90vh - 40px)}
+.field{margin:9px 0}.field label{display:block;font-size:10px;font-weight:bold;margin-bottom:5px}.field input{width:100%;border:3px solid #705238;background:#fff7df;padding:8px;outline:none}.field input:focus{border-color:#477fa1}
+/* BOTTOM DOCK */
+.dock{position:absolute;left:0;right:0;bottom:0;height:74px;background:#263b43;border-top:4px solid #10191d;z-index:50;display:grid;grid-template-columns:repeat(6,1fr);gap:5px;padding:6px 6px 7px}
+.dockBtn{border:3px solid #a98c5c;background:#ead19d;color:#3b403b;box-shadow:2px 2px 0 #111b1e;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:18px;position:relative}.dockBtn small{font:7px 'Press Start 2P';color:#3d4a3d}.dockBtn.active{background:var(--accent);color:white;border-color:#e5c766}.dockBtn.active small{color:white}.dockBtn:active{transform:translate(1px,2px);box-shadow:1px 1px #111b1e}
+/* little menu */
+.context{position:absolute;z-index:25;right:8px;top:64px;background:#f5e7c4;border:3px solid #293537;box-shadow:4px 4px #111b1e;display:none}.context.show{display:block}.context button{display:block;width:140px;padding:8px;border:0;border-bottom:2px solid #b59766;background:#f5e7c4;text-align:left;font-size:11px}.context button:last-child{border:0}
+/* pixel labels */
+.sign{position:absolute;z-index:5;background:#d7a965;border:4px solid #3b4038;color:#fff0bd;box-shadow:3px 3px #182226;font:8px 'Press Start 2P';padding:6px 8px;display:none}.sign.show{display:block}
+@media(min-width:700px){.shell{width:480px}}
 </style>
 </head>
 <body>
-<div class="app" id="app"></div>
-<div class="modal-back" id="modalBack"><div class="modal" id="modal"></div></div>
-<div class="toast" id="toast"></div>
-
+<div id="game"><div class="shell">
+  <div class="world"><canvas id="worldCanvas" width="320" height="560"></canvas><div class="worldShade"></div>
+    <div id="speech" class="speech"></div>
+  </div>
+  <div class="hud">
+    <div class="hudBox"><div class="logo">DIETDIEDIE</div><div class="date" id="dateHud"></div></div>
+    <div class="hudBox playerHud"><div class="date">RYURYA · LV.<span id="lvHud">1</span></div><div class="hpLine"><i></i></div><div class="xpLine"><i id="xpHud"></i></div></div>
+    <div class="hudBox coin">🪙 <b id="coinHud">0000</b></div>
+  </div>
+  <div id="windows" class="windows"></div>
+  <div id="backdrop" class="backdrop"></div>
+  <div id="context" class="context"></div>
+  <div class="dock">
+    <button class="dockBtn active" data-win="today" onclick="openWin('today')">📜<small>TODAY</small></button>
+    <button class="dockBtn" data-win="world" onclick="openWin('world')">🗺️<small>WORLD</small></button>
+    <button class="dockBtn" data-win="bag" onclick="openWin('bag')">🎒<small>BAG</small></button>
+    <button class="dockBtn" data-win="log" onclick="openWin('log')">📖<small>LOG</small></button>
+    <button class="dockBtn" data-win="shop" onclick="openWin('shop')">🛒<small>SHOP</small></button>
+    <button class="dockBtn" data-win="me" onclick="openWin('me')">🏠<small>ROOM</small></button>
+  </div>
+</div></div>
 <script>
-const KEY="dietdiedieV1";
-const todayKey=()=>new Date().toISOString().slice(0,10);
-
-const defaultState={
-  started:false,name:"ryurya",level:1,xp:0,streak:0,bestStreak:0,stageNo:1,
-  lastDate:null,morning:null,quests:[],cleared:false,history:[],weight:null,goalWeight:null
-};
+const KEY='dietdiedie_final_v3';
+const $=id=>document.getElementById(id);
+const today=()=>new Date().toISOString().slice(0,10);
+const state0={name:'ryurya',started:false,level:1,xp:0,coins:120,streak:0,best:0,stage:1,lastDate:null,morning:null,quests:[],history:[],weight:null,goalWeight:null,items:[],accent:'#69a65b',scene:'park'};
 let S=load();
-
-function load(){
-  try{return {...defaultState,...JSON.parse(localStorage.getItem(KEY))}}
-  catch(e){return {...defaultState}}
-}
+function load(){try{return {...state0,...JSON.parse(localStorage.getItem(KEY))}}catch(e){return {...state0}}}
 function save(){localStorage.setItem(KEY,JSON.stringify(S))}
-function toast(t){
-  const x=document.getElementById("toast");
-  x.textContent=t;x.classList.add("show");
-  setTimeout(()=>x.classList.remove("show"),1800);
+function xpNeed(){return 160+(S.level-1)*50}
+function addXP(n){S.xp+=n;S.coins+=Math.floor(n/5);while(S.xp>=xpNeed()){S.xp-=xpNeed();S.level++;S.coins+=50;popSpeech('LEVEL UP! 🌟');}}
+function popSpeech(t){$('speech').textContent=t;$('speech').classList.add('show');setTimeout(()=>$('speech').classList.remove('show'),1700)}
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function dateText(){return new Date().toLocaleDateString('ko-KR',{month:'long',day:'numeric',weekday:'short'})}
+function setAccent(c){S.accent=c;document.documentElement.style.setProperty('--accent',c);save()}
+function renderHUD(){ $('dateHud').textContent=dateText();$('lvHud').textContent=S.level;$('coinHud').textContent=String(S.coins).padStart(4,'0');$('xpHud').style.width=Math.round(S.xp/xpNeed()*100)+'%'; }
+/* PIXEL WORLD */
+const ctx=$('worldCanvas').getContext('2d');ctx.imageSmoothingEnabled=false;
+function rect(x,y,w,h,c){ctx.fillStyle=c;ctx.fillRect(x,y,w,h)}
+function px(x,y,c){rect(x,y,2,2,c)}
+function tree(x,y,s=1){
+  rect(x+7*s,y+26*s,7*s,17*s,'#654733');rect(x+4*s,y+11*s,22*s,18*s,'#2f6d42');rect(x,y+17*s,30*s,14*s,'#3e814b');rect(x+6*s,y+5*s,18*s,13*s,'#4d9250');rect(x+10*s,y,10*s,10*s,'#69a957');px(x+7*s,y+13*s,'#8db95c');px(x+20*s,y+8*s,'#91bf61');px(x+2*s,y+24*s,'#79aa57')
 }
-function xpNeed(){return 200+(S.level-1)*60}
-function addXP(n){
-  S.xp+=n;
-  while(S.xp>=xpNeed()){S.xp-=xpNeed();S.level++;toast("LEVEL UP! Lv."+S.level)}
+function bush(x,y,c='#4c8a4d'){rect(x,y,26,10,c);rect(x+5,y-5,17,8,c);px(x+5,y+3,'#82ae58');px(x+19,y-2,'#79a954')}
+function flower(x,y,c){rect(x+1,y+3,2,7,'#4d7846');px(x,y,c);px(x+4,y,c);px(x+2,y-2,c);px(x+2,y+2,'#e9c85e')}
+function person(x,y,shirt='#315e83',hair='#4a3026'){rect(x+4,y+11,8,10,hair);rect(x+3,y+19,10,12,shirt);rect(x+5,y+31,3,7,'#4b4039');rect(x+10,y+31,3,7,'#4b4039');px(x+5,y+15,'#ffd5a6');px(x+10,y+15,'#ffd5a6')}
+function dog(x,y){rect(x+3,y+10,18,10,'#9a6740');rect(x,y+12,6,9,'#9a6740');rect(x+17,y+7,7,10,'#9a6740');px(x+20,y+10,'#241f1c');rect(x+6,y+20,3,6,'#6c4933');rect(x+16,y+20,3,6,'#6c4933')}
+function player(x,y){
+  // shadow
+  rect(x-9,y+39,34,4,'#26362c55');
+  // hair/head
+  rect(x-2,y+3,19,17,'#5b3a2c');rect(x,y+6,17,16,'#f5bd91');px(x+3,y+12,'#302824');px(x+12,y+12,'#302824');
+  // shirt + bag
+  rect(x-5,y+21,27,17,'#5c9a72');rect(x-9,y+23,7,11,'#d59c50');rect(x+19,y+24,7,11,'#d59c50');
+  // legs
+  rect(x,y+37,8,8,'#36556a');rect(x+12,y+37,8,8,'#36556a');rect(x-1,y+44,9,3,'#e6dfc8');rect(x+12,y+44,9,3,'#e6dfc8');
+  // hair highlight
+  px(x+2,y+5,'#825340');px(x+12,y+5,'#825340');
 }
-function openModal(html){
-  document.getElementById("modal").innerHTML=html;
-  document.getElementById("modalBack").classList.add("show");
+function sign(x,y,text){rect(x,y,88,20,'#e3b568');rect(x+3,y+3,82,14,'#73502f');ctx.fillStyle='#fff0bf';ctx.font='6px monospace';ctx.fillText(text,x+7,y+12)}
+function drawWorld(){
+  const W=320,H=560;ctx.clearRect(0,0,W,H);
+  // sky
+  rect(0,0,W,188,'#5ea9ca');rect(0,105,W,83,'#78b7ce');
+  // clouds
+  rect(28,44,36,8,'#dcebcf');rect(37,38,21,12,'#eaf2d9');rect(232,65,45,8,'#dcebcf');rect(244,59,22,12,'#edf3dc');
+  // distant buildings
+  for(let x=0;x<320;x+=34){let h=24+(x*7%38);rect(x,170-h,28,h,'#6f8f9c');rect(x+4,176-h,5,7,'#cde1d5');rect(x+14,168-h,6,7,'#cde1d5');}
+  // hill
+  rect(0,180,W,20,'#4e8a4e');
+  // park grass
+  rect(0,200,W,240,'#70a85b');
+  for(let i=0;i<42;i++){let x=(i*71)%320,y=215+(i*47)%200;px(x,y,i%4?'#5d954f':'#91bd60')}
+  // river + bridge
+  rect(0,302,W,63,'#4d99b2');rect(0,310,W,3,'#88c7ce');rect(0,349,W,3,'#397e99');
+  rect(92,292,88,90,'#b79a70');rect(96,292,80,90,'#d3b98a');rect(96,321,80,8,'#7d674d');rect(96,354,80,8,'#7d674d');
+  // path
+  rect(0,412,W,48,'#cdb080');rect(0,416,W,3,'#e1cb9e');
+  // plaza
+  rect(38,224,84,45,'#d9c293');rect(42,228,76,37,'#ead7a9');
+  // trees border
+  tree(7,169,1.1);tree(52,178,.95);tree(270,168,1.1);tree(226,176,.95);tree(290,225,.9);tree(12,250,.85);tree(245,257,.9);tree(150,180,.8);
+  for(let i=0;i<12;i++)bush((i*29)%320,390+(i%3)*7,i%2?'#4d8d4d':'#568f4d');
+  // flowers
+  for(let i=0;i<24;i++)flower((i*43)%310,280+(i*31)%130,i%3===0?'#efcf68':i%3===1?'#e98c78':'#e6e2bf');
+  // little lake bench / picnic
+  rect(205,260,34,4,'#6d4c34');rect(208,264,4,8,'#6d4c34');rect(232,264,4,8,'#6d4c34');
+  rect(205,394,38,4,'#d85f55');rect(208,398,4,7,'#5f4434');rect(236,398,4,7,'#5f4434');
+  // NPCs and dog
+  person(70,260,'#cf7c61');person(122,286,'#496e8e');person(259,310,'#d5a64f');person(185,230,'#805f91');person(34,350,'#587f68');person(275,380,'#b35d62');dog(226,402);
+  // signboards
+  sign(16,205,'RYURYA PARK');sign(216,222,'TODAY QUEST');
+  // player centered lower
+  player(151,365);
+  // foreground
+  rect(0,460,W,100,'#3f6644');
+  for(let i=0;i<24;i++){rect((i*17)%320,455+(i%5)*10,2,12,'#5e824b')}
+  // little path foreground
+  rect(115,460,92,100,'#bfa36e');rect(121,460,80,100,'#d1b77f');
+  // path pixels
+  for(let y=470;y<555;y+=17){rect(139,y,14,3,'#e8d49b');rect(174,y+7,10,3,'#e8d49b')}
+  // character over foreground again
+  player(151,424);
+  // sign top left
+  sign(18,125,'SEOHYUN ROAD');
 }
-function closeModal(){document.getElementById("modalBack").classList.remove("show")}
-document.getElementById("modalBack").addEventListener("click",e=>{if(e.target.id==="modalBack")closeModal()});
-
-const intensity={
-  light:{label:"🌿 가볍게",mult:.75,desc:"부담 없이"},
-  normal:{label:"🌱 적당히",mult:1,desc:"딱 적당하게"},
-  hard:{label:"🔥 제대로",mult:1.2,desc:"운동 제대로"},
-  veryhard:{label:"⚡ 도전",mult:1.35,desc:"오늘은 빡세게"}
-};
-const condition={
-  great:{label:"😄 최고",desc:"컨디션 좋아"},
-  normal:{label:"🙂 보통",desc:"평소 같아"},
-  tired:{label:"😴 피곤",desc:"좀 지쳤어"},
-  sore:{label:"🫠 뻐근",desc:"몸이 뻐근해"}
-};
-
-function makeStage(){
-  const m=S.morning||{intensity:"normal",condition:"normal"};
-  let mult=intensity[m.intensity].mult;
-  if(m.condition==="tired")mult*=.85;
-  if(m.condition==="sore")mult*=.78;
-
-  if(S.history.length){
-    const last=S.history[S.history.length-1];
-    if(last.effort==="too_hard")mult*=.88;
-    if(last.effort==="too_easy")mult*=1.08;
-  }
-
-  mult=Math.max(.65,Math.min(1.35,mult));
-  const mins=Math.round((16*mult)/2)*2;
-  const water=mult<.8?1.3:mult>1.15?1.8:1.5;
-  const steps=mins>=18?7000:5500;
-
-  let workout;
-  if(m.condition==="sore"){
-    workout={title:"🧘 "+mins+"분 회복 루틴",items:["캣카우 8회","글루트 브릿지 12회 × 2","버드독 8회 × 2","전신 스트레칭 5분"]};
-  }else if(S.stageNo%3===1){
-    workout={title:"🏠 "+mins+"분 전신 루틴",items:["스쿼트 12회 × 3","글루트 브릿지 15회 × 3","벽 푸시업 10회 × 2","데드버그 8회 × 2","가벼운 스트레칭 3분"]};
-  }else if(S.stageNo%3===2){
-    workout={title:"🍑 "+mins+"분 하체·코어",items:["스쿼트 12회 × 3","사이드 레그레이즈 12회 × 2","글루트 브릿지 15회 × 3","데드버그 8회 × 2","힙 스트레칭 3분"]};
-  }else{
-    workout={title:"💪 "+mins+"분 상체·코어",items:["벽/무릎 푸시업 10회 × 3","버드독 8회 × 2","데드버그 8회 × 2","플랭크 15~25초 × 3","어깨 스트레칭 3분"]};
-  }
-
-  return [
-    {id:"move",title:workout.title,detail:workout.items.join(" · "),xp:45},
-    {id:"food",title:"🥗 단백질 챙기기",detail:"오늘 2끼에 단백질 식품 포함하기",xp:30},
-    {id:"water",title:"💧 물 "+water+"L 마시기",detail:"한 번에 몰아 마시지 말고 나눠 마시기",xp:25},
-    {id:"walk",title:"🚶 "+steps.toLocaleString()+"보 걷기",detail:"평소 활동량을 조금만 늘리기",xp:30}
-  ];
+function resizeCanvas(){drawWorld()} window.addEventListener('resize',resizeCanvas);drawWorld();
+/* WINDOW HTML */
+function winShell(id,title,body,compact=false){return `<div class="window ${compact?'compact':''}" id="win-${id}"><div class="titlebar"><span>${title}</span><div class="dots"><i></i><i></i><i></i><button class="close" onclick="closeWins()">×</button></div></div><div class="winbody">${body}</div></div>`}
+function closeWins(){document.querySelectorAll('.window').forEach(w=>w.classList.remove('open'));document.querySelectorAll('.dockBtn').forEach(b=>b.classList.remove('active'));}
+function openWin(id){
+  closeWins();document.querySelector(`[data-win="${id}"]`)?.classList.add('active');
+  $('windows').innerHTML=buildWindow(id);document.getElementById('win-'+id).classList.add('open');
+  if(id==='today'&&!S.morning)showMorning();
 }
-
-function ensureToday(){
-  const d=todayKey();
-  if(!S.lastDate){
-    S.lastDate=d;S.quests=makeStage();S.cleared=false;save();
-  }else if(S.lastDate!==d){
-    S.stageNo++;S.lastDate=d;S.morning=null;S.quests=[];S.cleared=false;save();
-  }
+function buildWindow(id){
+ if(id==='today')return winShell('today','TODAY // STAGE '+String(S.stage).padStart(2,'0'),todayHTML());
+ if(id==='world')return winShell('world','WORLD MAP // RYURYA AREA',worldHTML());
+ if(id==='bag')return winShell('bag','INVENTORY // POCKET',bagHTML());
+ if(id==='log')return winShell('log','JOURNAL // LITTLE DAYS',logHTML());
+ if(id==='shop')return winShell('shop','SHOP // PARK MARKET',shopHTML());
+ return winShell('me','MY ROOM // RYURYA',meHTML());
 }
-
-function render(){
-  if(!S.started){renderStart();return}
-  ensureToday();renderHome();
+function todayHTML(){
+ let done=S.quests.filter(q=>q.done).length;
+ let qs=S.quests.length?S.quests:makeStagePreview();
+ return `<div class="section"><h3>🌱 TODAY'S STAGE</h3><div class="big">${S.cleared?'오늘은 이미 클리어했어!':'오늘도 하나만 제대로 깨자.'}</div><div class="tiny">${done}/${qs.length} 퀘스트 · 3개 이상이면 STAGE CLEAR</div><div class="bar" style="margin-top:7px"><i style="width:${Math.round(done/qs.length*100)}%"></i></div></div>
+ <div class="section"><h3>🎯 QUEST BOARD</h3>${qs.map((q,i)=>`<div class="questRow ${q.done?'done':''}"><button class="qicon" onclick="toggleQuest(${i})">${q.done?'✓':q.icon}</button><div><b>${q.title}</b><span>${q.detail}</span></div><div class="xp">+${q.xp} XP</div></div>`).join('')}</div>
+ <div class="grid2"><button class="wideBtn" onclick="clearStage()">${done>=3?'STAGE CLEAR':'QUEST CHECK'}</button><button class="wideBtn alt" onclick="showMorning()">컨디션 다시 고르기</button></div>`;
 }
-
-function renderStart(){
-  document.getElementById("app").innerHTML=`
-  <div class="top">
-    <div class="logo">DIETDIEDIE</div><div class="badge">NEW GAME</div>
-  </div>
-  <div class="card hero">
-    <div class="world" style="text-align:center">★ RYURYA'S LITTLE WORLD ★</div>
-    <div class="sprite">
-      <div class="hair"></div><div class="head"></div><div class="eye1"></div><div class="eye2"></div>
-      <div class="body"></div><div class="leg1"></div><div class="leg2"></div>
-    </div>
-    <h1>오늘도 한 스테이지,<br>가볍게 깨보자!</h1>
-    <p>하루에 딱 하나의 스테이지.<br>오늘 뭐 할지는 내가 정해줄게.</p>
-  </div>
-  <div class="card">
-    <h2>FIRST SETUP</h2>
-    <div class="field"><label>이름</label><input id="name" value="ryurya"></div>
-    <div class="field"><label>현재 체중 · 선택</label><input id="weight" type="number" step="0.1" placeholder="예: 50"></div>
-    <div class="field"><label>목표 체중 · 선택</label><input id="goal" type="number" step="0.1" placeholder="예: 48"></div>
-    <button class="btn" onclick="startGame()">START QUEST ▶</button>
-  </div>`;
-}
-
-function startGame(){
-  S.name=document.getElementById("name").value||"ryurya";
-  S.weight=parseFloat(document.getElementById("weight").value)||null;
-  S.goalWeight=parseFloat(document.getElementById("goal").value)||null;
-  S.started=true;S.lastDate=todayKey();S.stageNo=1;S.morning={intensity:"normal",condition:"normal"};save();showMorning(true);
-}
-
-function showMorning(first=false){
-  const m={...(window.tempM||S.morning||{})};
-  window.tempM={...m};
-  openModal(`
-    <h1>${first?"FIRST STAGE":"TODAY STATUS"}</h1>
-    <p>오늘 원하는 강도와 몸 상태를 골라줘.<br>그걸 반영해서 오늘 스테이지를 만들게.</p>
-    <div class="field">
-      <label>TODAY'S INTENSITY</label>
-      <div class="choice-grid">
-        ${Object.entries(intensity).map(([k,v])=>`
-          <div class="choice ${window.tempM?.intensity===k?"selected":""}" onclick="pick('intensity','${k}')">
-            <strong>${v.label}</strong><small>${v.desc}</small>
-          </div>`).join("")}
-      </div>
-    </div>
-    <div class="field">
-      <label>TODAY'S CONDITION</label>
-      <div class="choice-grid">
-        ${Object.entries(condition).map(([k,v])=>`
-          <div class="choice ${window.tempM?.condition===k?"selected":""}" onclick="pick('condition','${k}')">
-            <strong>${v.label}</strong><small>${v.desc}</small>
-          </div>`).join("")}
-      </div>
-    </div>
-    <button class="btn" onclick="saveMorning()">BUILD TODAY'S STAGE ▶</button>
-  `);
-}
-
-function pick(type,k){
-  window.tempM=window.tempM||{};
-  window.tempM[type]=k;
-  document.querySelectorAll('.choice').forEach(el=>el.classList.remove('selected'));
-  const labels={intensity:intensity,condition:condition};
-  const section=type==='intensity'?0:1;
-  const groups=document.querySelectorAll('.field .choice-grid');
-  if(groups[section]){
-    [...groups[section].children].forEach((el,idx)=>{
-      if(Object.keys(labels[type])[idx]===k) el.classList.add('selected');
-    });
-  }
-}
-function saveMorning(){
-  if(!window.tempM?.intensity||!window.tempM?.condition){
-    toast("강도와 컨디션을 골라줘!");return;
-  }
-  S.morning=window.tempM;S.quests=makeStage();S.cleared=false;save();
-  closeModal();renderHome();
-}
-
-function renderHome(){
-  const done=S.quests.filter(q=>q.done).length,total=S.quests.length;
-  const pct=total?Math.round(done/total*100):0;
-
-  document.getElementById("app").innerHTML=`
-  <div class="top">
-    <div class="logo">DIETDIEDIE</div><div class="small">STREAK ${S.streak}</div>
-  </div>
-
-  <div class="card hero">
-    <div class="land">
-  <div class="sun"></div><div class="tree a"></div><div class="tree b"></div>
-  <div class="bush b1"></div><div class="bush b2"></div><div class="flower f1">✦</div><div class="flower f2">✿</div>
-  <div class="path"></div>
-</div>
-    <div class="row">
-      <div>
-        <span class="badge">DAY ${String(S.stageNo).padStart(2,"0")}</span>
-        <h1>TODAY'S STAGE</h1>
-      </div>
-      <div style="font-size:43px">🌱</div>
-    </div>
-    <p>${S.cleared?"🎉 TODAY'S STAGE CLEAR!":"오늘의 퀘스트를 3개 이상 깨면 클리어!"}</p>
-    <div class="progress"><i style="width:${pct}%"></i></div>
-    <div class="small">${done}/${total} QUESTS · LV.${S.level} · ${S.xp}/${xpNeed()} XP</div>
-  </div>
-
-  <div class="card">
-    <h2>STAGE MAP</h2>
-    <div style="display:flex;align-items:center;gap:5px;overflow:hidden">
-      <span class="badge">01 ✓</span><span>—</span>
-      <span class="badge" style="background:#f8dfa4">02 ★</span><span>—</span>
-      <span class="badge" style="opacity:.45">03 🔒</span><span>—</span>
-      <span class="badge" style="opacity:.45">04 🔒</span>
-    </div>
-  </div>
-
-  <div class="card">
-    <h2>TODAY'S QUEST</h2>
-    ${S.quests.map((q,i)=>`
-      <div class="quest">
-        <button class="check ${q.done?"done":""}" onclick="toggleQuest(${i})">${q.done?"✓":""}</button>
-        <div style="flex:1"><b>${q.title}</b><span>${q.detail}</span></div>
-        <b style="color:#71965e">+${q.xp}</b>
-      </div>`).join("")}
-    <div style="margin-top:14px">
-      <button class="btn ${done>=3?"":"secondary"}" onclick="finishStage()">
-        ${done>=3?"STAGE CLEAR":"CLEAR MORE QUESTS"}
-      </button>
-    </div>
-  </div>
-
-  <div class="card">
-    <h2>PLAYER LOG</h2>
-    <div class="stat">
-      <div class="statbox"><span class="small">CURRENT LEVEL</span><strong>Lv.${S.level}</strong></div>
-      <div class="statbox"><span class="small">BEST STREAK</span><strong>${S.bestStreak}일</strong></div>
-    </div>
-    <button class="btn secondary" style="margin-top:10px" onclick="showMorning(false)">오늘 강도 다시 설정</button>
-  </div>
-
-  ${nav("home")}`;
-}
-
-function nav(active){
-  return `<div class="nav">
-    <button class="${active==="home"?"active":""}" onclick="renderHome()">HOME</button>
-    <button class="${active==="log"?"active":""}" onclick="showStats()">LOG</button>
-    <button class="${active==="me"?"active":""}" onclick="showAbout()">RYURYA</button>
-  </div>`;
-}
-
-function toggleQuest(i){
-  if(S.quests[i].done)return;
-  S.quests[i].done=true;addXP(S.quests[i].xp);save();renderHome();toast("QUEST CLEAR!");
-}
-
-function finishStage(){
-  if(S.quests.filter(q=>q.done).length<3){
-    toast("3개 이상 완료하면 CLEAR야!");return;
-  }
-  if(!S.cleared){
-    S.cleared=true;S.streak++;S.bestStreak=Math.max(S.bestStreak,S.streak);
-    S.history.push({date:S.lastDate,effort:null,cleared:true});
-    addXP(50);save();
-  }
-  showNight();
-}
-
-function showNight(){
-  openModal(`
-    <h1>DAY ${String(S.stageNo).padStart(2,"0")} COMPLETE!</h1>
-    <p>오늘 스테이지 난이도는 어땠어?<br>다음 스테이지에 바로 반영할게.</p>
-    <div class="choice-grid" style="margin:14px 0">
-      <div class="choice" onclick="nightPick('too_easy')"><strong>😴 너무 쉬웠어</strong><small>조금 더 해도 돼</small></div>
-      <div class="choice" onclick="nightPick('just_right')"><strong>🙂 딱 좋았어</strong><small>이 정도가 좋아</small></div>
-      <div class="choice" onclick="nightPick('a_bit_hard')"><strong>😮‍💨 조금 힘들었어</strong><small>살짝 낮춰줘</small></div>
-      <div class="choice" onclick="nightPick('too_hard')"><strong>🫠 너무 힘들었어</strong><small>내일은 쉬어가자</small></div>
-    </div>
-    <button class="btn secondary" onclick="closeModal()">나중에 답하기</button>
-  `);
-}
-
-function nightPick(e){
-  const h=S.history[S.history.length-1];
-  if(h)h.effort=e;
-  save();closeModal();toast("다음 스테이지에 반영했어!");renderHome();
-}
-
-function showStats(){
-  const cleared=S.history.filter(x=>x.cleared).length;
-  document.getElementById("app").innerHTML=`
-    <div class="top"><div class="logo">DIETDIEDIE</div></div>
-    <div class="card"><h2>MY JOURNEY</h2>
-      <div class="stat">
-        <div class="statbox"><span class="small">CLEAR</span><strong>${cleared}일</strong></div>
-        <div class="statbox"><span class="small">STREAK</span><strong>${S.streak}일</strong></div>
-        <div class="statbox"><span class="small">LEVEL</span><strong>${S.level}</strong></div>
-        <div class="statbox"><span class="small">XP</span><strong>${S.xp}</strong></div>
-      </div>
-    </div>
-    <div class="card"><h2>BODY</h2>
-      <p>현재 체중: <b>${S.weight?S.weight+" kg":"아직 기록 없음"}</b></p>
-      <p>목표 체중: <b>${S.goalWeight?S.goalWeight+" kg":"아직 설정 없음"}</b></p>
-      <button class="btn secondary" onclick="editWeight()">체중 기록</button>
-    </div>
-    ${nav("log")}`;
-}
-
-function editWeight(){
-  openModal(`
-    <h1>TODAY'S WEIGHT</h1>
-    <div class="field"><label>현재 체중</label><input id="w" type="number" step="0.1" value="${S.weight||""}"></div>
-    <button class="btn" onclick="S.weight=parseFloat(document.getElementById('w').value)||S.weight;save();closeModal();showStats()">SAVE</button>
-  `);
-}
-
-function showAbout(){
-  document.getElementById("app").innerHTML=`
-    <div class="top"><div class="logo">DIETDIEDIE</div></div>
-    <div class="card hero">
-      <div class="sprite">
-        <div class="hair"></div><div class="head"></div><div class="eye1"></div><div class="eye2"></div>
-        <div class="body"></div><div class="leg1"></div><div class="leg2"></div>
-      </div>
-      <h1>ryurya · Lv.${S.level}</h1>
-      <p>작은 습관을 깨면서<br>캐릭터도 같이 자라는 중.</p>
-      <div class="progress"><i style="width:${Math.round(S.xp/xpNeed()*100)}%"></i></div>
-      <div class="small">${S.xp}/${xpNeed()} XP TO NEXT LEVEL</div>
-    </div>
-    <div class="card">
-      <h2>INVENTORY</h2>
-      <p>🌱 아직 잠금 해제된 아이템이 없어.</p>
-      <p class="small">나중에 옷, 방 꾸미기, 수집 아이템을 붙일 수 있어.</p>
-    </div>
-    ${nav("me")}`;
-}
-
-render();
+function makeStagePreview(){return [{icon:'🏃',title:'오늘의 운동',detail:'강도 선택 후 자동 생성',xp:45},{icon:'🥗',title:'단백질 챙기기',detail:'2끼에 단백질 넣기',xp:30},{icon:'💧',title:'물 마시기',detail:'하루 목표량 나눠 마시기',xp:25},{icon:'🚶',title:'걷기',detail:'오늘 목표 걸음 채우기',xp:30}]}
+function worldHTML(){return `<div class="section"><h3>🗺️ RYURYA WORLD</h3><p class="tiny">류랴가 하루를 보내는 작은 동네. 창을 닫으면 다시 월드로 돌아가.</p><div class="grid2"><button class="choice" onclick="sceneToast('공원','나무와 강이 있는 산책 구역')">🌳<br><b>중앙공원</b></button><button class="choice" onclick="sceneToast('상점가','아이템을 사고 꾸미는 구역')">🏪<br><b>상점가</b></button><button class="choice" onclick="sceneToast('집','하루를 마치고 쉬는 곳')">🏠<br><b>류랴의 집</b></button><button class="choice" onclick="sceneToast('운동장','오늘의 운동을 수행하는 곳')">🏟️<br><b>운동장</b></button></div></div><div class="section"><h3>📍 TODAY'S DESTINATION</h3><div class="big">중앙공원 → 산책로</div><p class="tiny">걷기 퀘스트를 깨면 새로운 장소가 조금씩 열려.</p></div>`}
+function bagHTML(){let items=[['🌱','새싹 뱃지','첫 스테이지 기념',true],['🥤','물병','물 퀘스트 보조',true],['🎟️','공원 티켓','산책 장소 해금',S.stage>=2],['👟','운동화','운동 퀘스트 보조',S.stage>=3],['🐶','강아지 친구','랜덤 등장',S.stage>=5],['🎀','류랴 리본','꾸미기 아이템',S.stage>=7]];return `<div class="section"><h3>🎒 POCKET</h3><div class="grid3">${items.map(x=>`<div class="item ${x[3]?'':'locked'}"><div class="art">${x[0]}</div><b>${x[1]}</b><small>${x[2]}</small>${x[3]?'<span class="tag">OWN</span>':''}</div>`).join('')}</div></div>`}
+function logHTML(){let clears=S.history.filter(h=>h.cleared).length;let cells=Array.from({length:28},(_,i)=>{let d=new Date();d.setDate(d.getDate()-(27-i));let k=d.toISOString().slice(0,10);let h=S.history.find(x=>x.date===k);return `<div class="day ${h?.cleared?'clear':''} ${k===today()?'today':''}">${d.getDate()}${h?.cleared?'★':''}</div>`}).join('');return `<div class="grid2"><div class="miniStat">CLEAR<b>${clears}</b></div><div class="miniStat">STREAK<b>${S.streak}</b></div><div class="miniStat">LEVEL<b>${S.level}</b></div><div class="miniStat">COIN<b>${S.coins}</b></div></div><div class="section" style="margin-top:9px"><h3>📅 LITTLE DAYS</h3><div class="calendar">${cells}</div></div><div class="section"><h3>⚖️ BODY NOTE</h3><div class="tiny">현재 체중</div><div class="big">${S.weight?S.weight+' kg':'—'}</div><div class="tiny" style="margin-top:6px">목표 체중</div><div class="big">${S.goalWeight?S.goalWeight+' kg':'—'}</div><button class="wideBtn alt" style="margin-top:8px" onclick="editWeight()">기록 수정</button></div>`}
+function shopHTML(){let goods=[['🌼','민들레 배지',80,'배경에 꽃이 늘어남'],['🧺','피크닉 바구니',120,'공원에 소품 추가'],['🐕','산책 강아지',180,'월드에 강아지 등장'],['🌙','노을 시간',240,'월드 색감 변경']];return `<div class="section"><h3>🪙 ${S.coins} COINS</h3><p class="tiny">퀘스트를 깨면 코인을 모아 작은 세상을 꾸밀 수 있어.</p></div>${goods.map((g,i)=>`<div class="section"><div class="row"><div><div class="big">${g[0]} ${g[1]}</div><div class="tiny">${g[3]}</div></div><button class="wideBtn" style="width:100px" onclick="buy(${i},${g[2]})">${g[2]} 🪙</button></div></div>`).join('')}`}
+function meHTML(){return `<div class="section"><h3>🏠 MY ROOM</h3><div class="big">안녕, ${esc(S.name)}.</div><p class="tiny">여기는 류랴가 만든 작은 세계의 방이야. 창마다 다른 이야기가 있어.</p></div><div class="section"><h3>🎨 WORLD COLOR</h3><div class="grid3">${[['#69a65b','숲'],['#5d9fbe','하늘'],['#d69a63','노을'],['#8c78a7','밤'],['#d66e68','꽃']].map(a=>`<button class="choice" onclick="setAccent('${a[0]}');openWin('me')" style="border-color:${a[0]}">${a[1]}</button>`).join('')}</div><p class="tiny" style="margin-top:8px">창을 클릭하면 색이 바뀌어. 류랴가 사는 세상은 류랴 취향대로.</p></div><div class="section"><h3>⚙️ SAVE DATA</h3><button class="wideBtn alt" onclick="resetGame()">처음부터 다시 만들기</button></div>`}
+/* MORNING MODAL */
+const intens={light:['🌿 가볍게','회복 위주'],normal:['🌱 적당히','딱 좋은 정도'],hard:['🔥 제대로','운동 제대로'],very:['⚡ 도전','오늘은 빡세게']};
+const conds={great:['☀️ 최고','몸이 가벼워'],normal:['🙂 보통','평소 같아'],tired:['🌧️ 피곤','좀 지쳤어'],sore:['🫠 뻐근','몸이 뻐근해']};
+function showMorning(){let m=S.morning||{};$('backdrop').innerHTML=`<div class="modal"><div class="titlebar"><span>${S.morning?'TODAY STATUS':'FIRST MORNING'}</span><button class="close" onclick="closeModal()">×</button></div><div class="winbody"><div class="section"><h3>☀️ 오늘의 시작</h3><p class="tiny">강도와 컨디션을 고르면 내가 오늘 스테이지를 직접 짜줄게.</p></div><div class="section"><h3>01 / 얼마나 할까?</h3><div class="grid2">${Object.entries(intens).map(([k,v])=>`<button class="choice ${m.intensity===k?'sel':''}" onclick="pickM('intensity','${k}')"><b>${v[0]}</b><small>${v[1]}</small></button>`).join('')}</div></div><div class="section"><h3>02 / 지금 몸은?</h3><div class="grid2">${Object.entries(conds).map(([k,v])=>`<button class="choice ${m.condition===k?'sel':''}" onclick="pickM('condition','${k}')"><b>${v[0]}</b><small>${v[1]}</small></button>`).join('')}</div></div><button class="wideBtn" onclick="saveMorning()">TODAY'S STAGE 만들기 ▶</button></div></div>`;$('backdrop').classList.add('show');window.tmpM={...m}}
+function pickM(type,k){window.tmpM=window.tmpM||{};window.tmpM[type]=k;showMorning();}
+function closeModal(){$('backdrop').classList.remove('show')}
+function saveMorning(){if(!window.tmpM?.intensity||!window.tmpM?.condition){popSpeech('강도와 컨디션을 둘 다 골라줘!');return}S.morning=window.tmpM;S.quests=makeStage();save();closeModal();openWin('today')}
+function makeStage(){let m=S.morning||{intensity:'normal',condition:'normal'};let mult={light:.75,normal:1,hard:1.2,very:1.35}[m.intensity];if(m.condition==='tired')mult*=.85;if(m.condition==='sore')mult*=.78;let last=S.history[S.history.length-1];if(last?.effort==='too_hard')mult*=.88;if(last?.effort==='too_easy')mult*=1.08;mult=Math.max(.65,Math.min(1.35,mult));let mins=Math.round(16*mult/2)*2;let water=mult<.8?1.3:mult>1.15?1.8:1.5;let steps=mins>=18?7000:5500;let workout=m.condition==='sore'?['캣카우 8회','글루트 브릿지 12회 × 2','버드독 8회 × 2','전신 스트레칭 5분']:S.stage%3===1?['스쿼트 12회 × 3','글루트 브릿지 15회 × 3','벽 푸시업 10회 × 2','데드버그 8회 × 2']:S.stage%3===2?['스쿼트 12회 × 3','사이드 레그레이즈 12회 × 2','글루트 브릿지 15회 × 3','데드버그 8회 × 2']:['벽/무릎 푸시업 10회 × 3','버드독 8회 × 2','데드버그 8회 × 2','플랭크 15~25초 × 3'];return [{id:'move',icon:'🏃',title:`${mins}분 ${m.condition==='sore'?'회복':'전신'} 루틴`,detail:workout.join(' · '),xp:45},{id:'food',icon:'🥗',title:'단백질 챙기기',detail:'오늘 2끼에 단백질 식품 포함하기',xp:30},{id:'water',icon:'💧',title:`물 ${water}L 마시기`,detail:'한 번에 몰아 마시지 말고 나눠 마시기',xp:25},{id:'walk',icon:'🚶',title:`${steps.toLocaleString()}보 걷기`,detail:'산책로를 한 바퀴 돈다고 생각하기',xp:30}]}
+function toggleQuest(i){if(!S.quests[i]||S.quests[i].done)return;S.quests[i].done=true;addXP(S.quests[i].xp);save();popSpeech('QUEST CLEAR! ✨');openWin('today');renderHUD()}
+function clearStage(){let done=S.quests.filter(q=>q.done).length;if(done<3){popSpeech('퀘스트 3개는 깨야 해!');return}if(!S.cleared){S.cleared=true;S.streak++;S.best=Math.max(S.best,S.streak);S.history.push({date:today(),cleared:true,effort:null});addXP(50);save()}showNight()}
+function showNight(){let h=S.history[S.history.length-1];$('backdrop').innerHTML=`<div class="modal"><div class="titlebar"><span>DAY ${String(S.stage).padStart(2,'0')} COMPLETE</span></div><div class="winbody"><div class="section"><h3>🌙 오늘의 난이도</h3><p class="big">어땠어?</p><p class="tiny">다음 스테이지에 바로 반영할게.</p></div><div class="grid2">${[['too_easy','😴 너무 쉬웠어'],['just_right','🙂 딱 좋았어'],['a_bit_hard','😮‍💨 조금 힘들었어'],['too_hard','🫠 너무 힘들었어']].map(x=>`<button class="choice" onclick="night('${x[0]}')"><b>${x[1]}</b></button>`).join('')}</div></div></div>`;$('backdrop').classList.add('show')}
+function night(e){let h=S.history[S.history.length-1];if(h)h.effort=e;save();closeModal();popSpeech('내일 스테이지에 반영했어 🌱')}
+function sceneToast(a,b){popSpeech(a+' · '+b)}
+function buy(i,cost){if(S.coins<cost){popSpeech('코인이 부족해!');return}S.coins-=cost;save();renderHUD();popSpeech('아이템을 샀어! 🛍️');openWin('shop')}
+function editWeight(){ $('backdrop').innerHTML=`<div class="modal"><div class="titlebar"><span>BODY NOTE</span><button class="close" onclick="closeModal()">×</button></div><div class="winbody"><div class="field"><label>현재 체중</label><input id="weightInput" type="number" step="0.1" value="${S.weight||''}" placeholder="예: 50"></div><div class="field"><label>목표 체중</label><input id="goalInput" type="number" step="0.1" value="${S.goalWeight||''}" placeholder="예: 48"></div><button class="wideBtn" onclick="saveWeight()">SAVE NOTE</button></div></div>`;$('backdrop').classList.add('show')}
+function saveWeight(){S.weight=parseFloat($('weightInput').value)||null;S.goalWeight=parseFloat($('goalInput').value)||null;save();closeModal();openWin('log')}
+function resetGame(){if(confirm('정말 처음부터 다시 시작할까?')){localStorage.removeItem(KEY);location.reload()}}
+function start(){if(!S.started){$('backdrop').innerHTML=`<div class="modal"><div class="titlebar"><span>NEW GAME // RYURYA</span></div><div class="winbody"><div class="section"><h3>🌳 RYURYA'S LITTLE WORLD</h3><p class="big">작은 세상 하나를 만들어보자.</p><p class="tiny">여기는 류랴 혼자 쓰는 다이어트 RPG야. 오늘 할 일은 내가 정해줄게.</p></div><div class="field"><label>캐릭터 이름</label><input id="nameInput" value="ryurya"></div><div class="field"><label>현재 체중 · 선택</label><input id="startWeight" type="number" step="0.1" placeholder="예: 50"></div><div class="field"><label>목표 체중 · 선택</label><input id="startGoal" type="number" step="0.1" placeholder="예: 48"></div><button class="wideBtn" onclick="beginGame()">START WORLD ▶</button></div></div>`;$('backdrop').classList.add('show')}else{ensureDay();openWin('today');}}
+function beginGame(){S.started=true;S.name=$('nameInput').value||'ryurya';S.weight=parseFloat($('startWeight').value)||null;S.goalWeight=parseFloat($('startGoal').value)||null;S.lastDate=today();S.stage=1;save();closeModal();showMorning()}
+function ensureDay(){if(!S.lastDate){S.lastDate=today();save()}if(S.lastDate!==today()){S.stage++;S.lastDate=today();S.morning=null;S.quests=[];S.cleared=false;save();showMorning()}}
+// start screen overlay, but world remains visible
+function boot(){document.documentElement.style.setProperty('--accent',S.accent||'#69a65b');renderHUD();if(!S.started)start();else{ensureDay();openWin('today')}}
+boot();
 </script>
-</body>
-</html>
+</body></html>
